@@ -53,17 +53,14 @@ fn gen_enviroment(
 }
 
 fn gen_run(cfg: &crate::config::Config) -> Result<xunit_repo_interface::Run, LocalErr> {
-    match (
-        cfg.run_sk.as_ref(),
-        cfg.run_identifier.as_ref(),
-    ) {
+    match (cfg.run_sk.as_ref(), cfg.run_identifier.as_ref()) {
         (Some(sk), Some(client_identifier)) => Ok(xunit_repo_interface::Run {
             sk: Some(sk.clone()),
             client_identifier: Some(client_identifier.clone()),
         }),
         (None, Some(client_identifier)) => Ok(xunit_repo_interface::Run {
             sk: None,
-            client_identifier:Some(client_identifier.clone()),
+            client_identifier: Some(client_identifier.clone()),
         }),
         (Some(sk), None) => Ok(xunit_repo_interface::Run {
             sk: Some(sk.clone()),
